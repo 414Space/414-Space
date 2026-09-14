@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jinxuan — Artist & Animator</title>
+  <meta name="description" content="Jinxuan — artist and animator. Moving image, painting and visual storytelling.">
+
+  <style>
+    /* =========================================================
+       JINXUAN PORTFOLIO — BLACK / WHITE UI FRAMEWORK
+       Everything is in this one HTML file for easy GitHub upload.
+       Replace text and image paths marked [EDIT].
+       ========================================================= */
+
+    :root{
+      --black:#000;
+      --white:#f5f5f2;
+      --grey:#8a8a86;
+      --line:#2a2a2a;
+      --pad:clamp(20px,3vw,48px);
+      --gap:clamp(24px,4vw,72px);
+    }
+
+    *{box-sizing:border-box}
+    html{
+      scroll-behavior:smooth;
+      scroll-snap-type:y proximity;
+      background:var(--black);
+    }
+    body{
+      margin:0;
+      background:var(--black);
+      color:var(--white);
+      font-family:Arial, Helvetica, sans-serif;
+      font-weight:400;
+      letter-spacing:-.02em;
+    }
+    a{color:inherit;text-decoration:none}
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    button{font:inherit}
+
+    /* ---------- GLOBAL NAV ---------- */
+    .nav{
+      position:fixed;
+      z-index:100;
+      top:0;left:0;right:0;
+      padding:var(--pad);
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+      font-size:12px;
+      letter-spacing:.04em;
+      mix-blend-mode:difference;
+    }
+    .nav-left{justify-self:start}
+    .nav-center{justify-self:center;font-weight:600}
+    .nav-right{justify-self:end;display:flex;gap:24px}
+    .nav a:hover{opacity:.5}
+
+    /* ---------- COMMON ---------- */
+    .screen{
+      min-height:100svh;
+      padding:calc(var(--pad) + 34px) var(--pad) var(--pad);
+      scroll-snap-align:start;
+      position:relative;
+    }
+    .label{
+      font-size:10px;
+      line-height:1;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--grey);
+    }
+    .rule{
+      height:1px;
+      background:var(--line);
+      width:100%;
+    }
+
+    /* ---------- HOME ---------- */
+    .home{
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      overflow:hidden;
+    }
+    .home-title{
+      margin-top:14vh;
+      font-size:clamp(76px,17vw,260px);
+      line-height:.78;
+      letter-spacing:-.085em;
+      font-weight:500;
+    }
+    .home-title span{display:block}
+    .home-bottom{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:20px;
+      font-size:12px;
+      line-height:1.35;
+    }
+    .home-bottom .right{text-align:right}
+
+    /* ---------- ABOUT ---------- */
+    .about{
+      display:grid;
+      grid-template-columns:1fr 2fr;
+      gap:var(--gap);
+      align-content:center;
+    }
+    .about h2{
+      margin:0;
+      font-size:clamp(48px,8vw,120px);
+      line-height:.85;
+      letter-spacing:-.07em;
+      font-weight:400;
+    }
+    .about-copy{
+      max-width:720px;
+      align-self:center;
+    }
+    .about-copy .lead{
+      font-size:clamp(24px,3.2vw,52px);
+      line-height:1.03;
+      letter-spacing:-.045em;
+      margin:0 0 42px;
+    }
+    .about-copy .small{
+      max-width:560px;
+      font-size:14px;
+      line-height:1.45;
+      color:#c0c0bc;
+    }
+
+    /* ---------- PROJECT INDEX ---------- */
+    .projects{
+      padding-left:0;
+      padding-right:0;
+    }
+    .projects-head{
+      padding:0 var(--pad);
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      margin-bottom:10vh;
+    }
+    .projects-head h2{
+      margin:0;
+      font-size:clamp(54px,9vw,140px);
+      line-height:.82;
+      letter-spacing:-.075em;
+      font-weight:400;
+    }
+
+    .project-row{
+      min-height:100svh;
+      border-top:1px solid var(--line);
+      padding:var(--pad);
+      display:grid;
+      grid-template-columns:70px 1fr minmax(180px,280px);
+      gap:var(--gap);
+      align-items:center;
+      scroll-snap-align:start;
+    }
+    .project-number{
+      align-self:start;
+      padding-top:4px;
+      color:var(--grey);
+      font-size:11px;
+    }
+    .project-visual{
+      height:72vh;
+      min-height:480px;
+      background:#111;
+      overflow:hidden;
+      position:relative;
+    }
+    .project-visual .placeholder{
+      width:100%;
+      height:100%;
+      display:grid;
+      place-items:center;
+      color:#555;
+      border:1px solid #202020;
+      font-size:11px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .project-info{
+      align-self:end;
+      padding-bottom:2vh;
+    }
+    .project-info h3{
+      margin:10px 0 12px;
+      font-size:clamp(28px,3.4vw,54px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:400;
+    }
+    .project-info p{
+      color:#aaa;
+      font-size:12px;
+      line-height:1.4;
+      margin:0;
+    }
+    .project-link{
+      display:inline-block;
+      margin-top:28px;
+      border-bottom:1px solid #666;
+      padding-bottom:5px;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    /* ---------- PROJECT DETAIL TEMPLATE ---------- */
+    .detail{
+      padding-top:15vh;
+    }
+    .detail-header{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:var(--gap);
+      margin-bottom:12vh;
+    }
+    .detail h1{
+      margin:0;
+      font-size:clamp(58px,10vw,160px);
+      line-height:.8;
+      letter-spacing:-.08em;
+      font-weight:400;
+    }
+    .detail-meta{
+      align-self:end;
+      font-size:13px;
+      line-height:1.45;
+      color:#aaa;
+      max-width:420px;
+    }
+    .detail-hero{
+      width:100%;
+      height:78vh;
+      min-height:500px;
+      background:#111;
+      margin-bottom:12vh;
+    }
+    .detail-text{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:var(--gap);
+      margin-bottom:12vh;
+    }
+    .detail-text p{
+      margin:0;
+      font-size:clamp(20px,2.2vw,32px);
+      line-height:1.12;
+      letter-spacing:-.035em;
+    }
+    .detail-gallery{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:var(--gap);
+    }
+    .detail-gallery .image-slot{
+      height:70vh;
+      min-height:450px;
+      background:#111;
+    }
+    .detail-gallery .wide{
+      grid-column:1/-1;
+      height:85vh;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer{
+      min-height:45vh;
+      padding:var(--pad);
+      border-top:1px solid var(--line);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    footer .big{
+      font-size:clamp(48px,9vw,130px);
+      line-height:.82;
+      letter-spacing:-.075em;
+    }
+    footer .footer-bottom{
+      display:flex;
+      justify-content:space-between;
+      font-size:11px;
+      color:var(--grey);
+    }
+
+    /* ---------- MOBILE ---------- */
+    @media(max-width:700px){
+      .nav{
+        grid-template-columns:1fr auto;
+      }
+      .nav-center{display:none}
+      .nav-right{gap:14px}
+
+      .home-title{
+        font-size:clamp(68px,22vw,140px);
+        margin-top:20vh;
+      }
+      .home-bottom{
+        grid-template-columns:1fr 1fr;
+      }
+      .home-bottom .right{
+        text-align:left;
+        grid-column:1/-1;
+      }
+
+      .about{
+        grid-template-columns:1fr;
+        align-content:center;
+      }
+
+      .project-row{
+        grid-template-columns:35px 1fr;
+        gap:16px;
+        padding-top:80px;
+        padding-bottom:30px;
+      }
+      .project-visual{
+        grid-column:2;
+        height:62svh;
+        min-height:0;
+      }
+      .project-info{
+        grid-column:2;
+      }
+
+      .detail-header,
+      .detail-text{
+        grid-template-columns:1fr;
+      }
+      .detail-hero{
+        height:60svh;
+        min-height:0;
+      }
+      .detail-gallery{
+        grid-template-columns:1fr;
+      }
+      .detail-gallery .wide{
+        grid-column:auto;
+      }
+      .detail-gallery .image-slot,
+      .detail-gallery .wide{
+        height:60svh;
+        min-height:0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================================================
+       NAVIGATION
+       ======================================================== -->
+  <header class="nav">
+    <a href="#top" class="nav-left">JINXUAN</a>
+    <span class="nav-center">ARTIST / ANIMATOR</span>
+    <nav class="nav-right">
+      <a href="#about">ABOUT</a>
+      <a href="#projects">WORK</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </header>
+
+
+  <!-- ========================================================
+       01 — HOME
+       ======================================================== -->
+  <section id="top" class="screen home">
+    <div class="home-title">
+      <span>JIN</span>
+      <span>XUAN</span>
+    </div>
+
+    <div class="home-bottom">
+      <div>
+        Artist & Animator<br>
+        Moving Image / Painting / Visual Storytelling
+      </div>
+
+      <div>
+        London / China<br>
+        <span class="label">Portfolio 2026</span>
+      </div>
+
+      <div class="right">
+        Scroll to explore ↓
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================
+       02 — ABOUT
+       ======================================================== -->
+  <section id="about" class="screen about">
+    <div>
+      <div class="label">01 / About</div>
+    </div>
+
+    <div class="about-copy">
+      <h2>ABOUT<br>THE ARTIST</h2>
+
+      <p class="lead">
+        [EDIT — Put your one-sentence artist statement here.]
+      </p>
+
+      <p class="small">
+        [EDIT — Personal introduction. For example: Jinxuan is an artist
+        and animator working across moving image, painting and visual
+        storytelling. Her practice grows from fragments of memory,
+        images and fleeting sensations, exploring nature, connection,
+        the self and ambiguous states between life, time and transformation.]
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ========================================================
+       03 — PROJECT INDEX
+       Each row is a full-screen project.
+       Replace each placeholder with an <img>.
+       ======================================================== -->
+  <section id="projects" class="projects">
+
+    <div class="projects-head">
+      <div>
+        <div class="label">02 / Selected Works</div>
+        <h2>WORK</h2>
+      </div>
+      <div class="label">Scroll ↓</div>
+    </div>
+
+
+    <!-- PROJECT 01 -->
+    <article class="project-row">
+      <div class="project-number">01</div>
+
+      <a href="#project-01" class="project-visual">
+        <div class="placeholder">
+          [PROJECT 01 — KEYFRAME / MAIN VISUAL]
+        </div>
+      </a>
+
+      <div class="project-info">
+        <div class="label">2026 / Animation</div>
+        <h3>
+          <a href="#project-01">Making Worlds<br>With Others</a>
+        </h3>
+        <p>
+          [EDIT — one-line project description]
+        </p>
+        <a href="#project-01" class="project-link">View project →</a>
+      </div>
+    </article>
+
+
+    <!-- PROJECT 02 -->
+    <article class="project-row">
+      <div class="project-number">02</div>
+
+      <a href="#project-02" class="project-visual">
+        <div class="placeholder">
+          [PROJECT 02 — KEYFRAME / MAIN VISUAL]
+        </div>
+      </a>
+
+      <div class="project-info">
+        <div class="label">2026 / Animation</div>
+        <h3>
+          <a href="#project-02">食血鹤</a>
+        </h3>
+        <p>
+          [EDIT — one-line project description]
+        </p>
+        <a href="#project-02" class="project-link">View project →</a>
+      </div>
+    </article>
+
+
+    <!-- PROJECT 03 -->
+    <article class="project-row">
+      <div class="project-number">03</div>
+
+      <a href="#project-03" class="project-visual">
+        <div class="placeholder">
+          [PROJECT 03 — KEYFRAME / MAIN VISUAL]
+        </div>
+      </a>
+
+      <div class="project-info">
+        <div class="label">2025 / AI / Moving Image</div>
+        <h3>
+          <a href="#project-03">Be Digital</a>
+        </h3>
+        <p>
+          [EDIT — one-line project description]
+        </p>
+        <a href="#project-03" class="project-link">View project →</a>
+      </div>
+    </article>
+
+  </section>
+
+
+  <!-- ========================================================
+       PROJECT DETAIL 01
+       These are currently sections in the same HTML.
+       Later, each can be moved to its own .html file.
+       ======================================================== -->
+
+  <section id="project-01" class="screen detail">
+    <div class="label">03 / Project 01</div>
+
+    <div class="detail-header">
+      <h1>Making<br>Worlds</h1>
+      <div class="detail-meta">
+        <strong>Making Worlds With Others</strong><br>
+        2026 / Animation / Moving Image<br><br>
+        [EDIT — collaborators / duration / software / exhibition]
+      </div>
+    </div>
+
+    <div class="detail-hero">
+      <div class="placeholder">[MAIN PROJECT IMAGE / VIDEO]</div>
+    </div>
+
+    <div class="detail-text">
+      <div class="label">Project statement</div>
+      <p>
+        [EDIT — Put the complete project statement here. Keep this section
+        relatively short and let the images carry the visual narrative.]
+      </p>
+    </div>
+
+    <div class="detail-gallery">
+      <div class="image-slot"><div class="placeholder">[KEYFRAME 01]</div></div>
+      <div class="image-slot"><div class="placeholder">[KEYFRAME 02]</div></div>
+      <div class="image-slot wide"><div class="placeholder">[PROCESS / STORYBOARD / STILL]</div></div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================
+       PROJECT DETAIL 02
+       ======================================================== -->
+
+  <section id="project-02" class="screen detail">
+    <div class="label">04 / Project 02</div>
+
+    <div class="detail-header">
+      <h1>食血鹤</h1>
+      <div class="detail-meta">
+        2026 / Animation / Visual Narrative<br><br>
+        [EDIT — short project information]
+      </div>
+    </div>
+
+    <div class="detail-hero">
+      <div class="placeholder">[MAIN PROJECT IMAGE / VIDEO]</div>
+    </div>
+
+    <div class="detail-text">
+      <div class="label">Project statement</div>
+      <p>[EDIT — Project statement]</p>
+    </div>
+
+    <div class="detail-gallery">
+      <div class="image-slot"><div class="placeholder">[KEYFRAME 01]</div></div>
+      <div class="image-slot"><div class="placeholder">[KEYFRAME 02]</div></div>
+      <div class="image-slot wide"><div class="placeholder">[KEYFRAME / BACKGROUND / PROCESS]</div></div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================
+       PROJECT DETAIL 03
+       ======================================================== -->
+
+  <section id="project-03" class="screen detail">
+    <div class="label">05 / Project 03</div>
+
+    <div class="detail-header">
+      <h1>Be<br>Digital</h1>
+      <div class="detail-meta">
+        2025 / AI / Moving Image / Collage<br><br>
+        [EDIT — short project information]
+      </div>
+    </div>
+
+    <div class="detail-hero">
+      <div class="placeholder">[MAIN PROJECT IMAGE / VIDEO]</div>
+    </div>
+
+    <div class="detail-text">
+      <div class="label">Project statement</div>
+      <p>[EDIT — Project statement]</p>
+    </div>
+
+    <div class="detail-gallery">
+      <div class="image-slot"><div class="placeholder">[IMAGE 01]</div></div>
+      <div class="image-slot"><div class="placeholder">[IMAGE 02]</div></div>
+      <div class="image-slot wide"><div class="placeholder">[PROCESS / AI DEVELOPMENT]</div></div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================
+       CONTACT / FOOTER
+       ======================================================== -->
+  <footer id="contact">
+    <div>
+      <div class="label">06 / Contact</div>
+      <div class="big">
+        LET'S<br>WORK<br>TOGETHER.
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <a href="mailto:YOUR-EMAIL@example.com">YOUR-EMAIL@example.com</a>
+      <span>© 2026 Jinxuan</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+</body>
+</html>
